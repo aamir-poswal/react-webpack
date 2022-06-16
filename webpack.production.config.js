@@ -1,11 +1,13 @@
 const path = require("path");
 module.exports = {
   output: {
+    library: "EBAWidget",
+    libraryTarget: "umd",
+    filename: "App.js",
     path: path.join(__dirname, "/dist"),
-    filename: "index.bundle.js",
   },
-  devServer: {
-    port: 3010,
+  resolve: {
+    extensions: [".js", ".jsx", ".scss", "..."],
   },
   module: {
     rules: [
@@ -39,5 +41,19 @@ module.exports = {
         ],
       },
     ],
+  },
+  externals: {
+    react: {
+      root: "React",
+      commonjs2: "react",
+      commonjs: "react",
+      amd: "react",
+    },
+    reactDOM: {
+      root: "ReactDOM",
+      commonjs2: "react-dom",
+      commonjs: "react-dom",
+      amd: "react-dom",
+    },
   },
 };
