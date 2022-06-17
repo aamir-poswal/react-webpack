@@ -53,11 +53,11 @@ h1{
 	display: flex;
   align-items: flex-start;
   align-content: flex-start;
-  width: 100%;
+  width: calc(100% - 30px);
 }
 .row-action-height{
-  min-height: 10%;
+  min-height: calc(10% - 5px);
 }
 .row-content-height{
-  min-height: 70%;
+  min-height: calc(70% - 10px);
 }
