@@ -1,9 +1,10 @@
-require('file-loader?name=[name].[ext]!./index.html');
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { App } from './App';
-import './App.scss';
+require("file-loader?name=[name].[ext]!./index.html");
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./App";
+import "./App.scss";
 
-const appElement = document.getElementById('app');
+const container = document.getElementById("app");
+const root = createRoot(container);
 
-ReactDOM.render(<App />, appElement);
+root.render(<App id="app" />);
