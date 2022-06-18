@@ -1,3 +1,5 @@
-export const API_BASEURL = "https://volue-geminitest.fmecloud.com/fmeserver/";
-export const SUBMIT_JOB_URL =
-  "https://volue-geminitest.fmecloud.com/fmeserver/submitjob";
+//   export const REACT_APP_TEST_KEY = process.test.env.REACT_APP_TEST_KEY;
+const config = {
+  REACT_APP_TEST_KEY: "test key",
+};
+export default config;
