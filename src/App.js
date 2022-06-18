@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import config from "./environments/environment.test.config";
+import userService from "./services/userService";
 export function App() {
   const [testKey, settestkey] = useState("");
   useEffect(() => {
-    settestkey();
+    settestkey(config.REACT_APP_TEST_KEY);
+    userService.pingFMEServer();
   }, []);
   return (
     <div>
@@ -12,7 +14,7 @@ export function App() {
           <button className="button-23">Download KML</button>
         </div>
         <div className="row row-content-height">
-          <p>these are contents {config.REACT_APP_TEST_KEY}</p>
+          <p>these are contents {testKey}</p>
         </div>
       </div>
     </div>

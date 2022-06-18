@@ -1,21 +1,14 @@
-import axios from "axios";
-import { API_BASEURL } from "./config";
+//import config from "/environments/environment.test.config";
 
-// Login
-export const login = async (username, password) => {
-  const headers = { "Content-Type": "application/json" };
-  const body = { username, password };
-  const resp = await axios.post(`${API_BASEURL}/auth/login`, body, { headers });
-  return resp;
+const pingFMEServer = () => {
+  //fetch(config.pingFMEServer).then((response) => console.log(response));
+  fetch("https://volue-geminitest.fmecloud.com/fmerest/v3/healthcheck", {
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    method: "GET",
+    mode: "no-cors",
+  }).then((response) => console.log(response));
 };
 
-export const verify = async (token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  };
-  const resp = await axios.get(`${API_BASEURL}/auth/verify`, config);
-  return resp;
+export default {
+  pingFMEServer: pingFMEServer,
 };
