@@ -3,10 +3,8 @@ import Report from "./components/Report";
 import config from "./environments/TestEnvironmentConfig";
 import userService from "./services/userService";
 export function App() {
-  const [testKey, settestkey] = useState("");
   useEffect(() => {
-    settestkey(config.REACT_APP_TEST_KEY);
-    userService.pingFMEServer();
+    userService.loginToFMEServer();
   }, []);
   return (
     <div>
