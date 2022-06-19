@@ -15,7 +15,7 @@ export function App() {
         <div className="container">
           <div>
             <div className="row row-action-height">
-              <button className="button-23">Download KML {token}</button>
+              <button className="button-23">Download KML</button>
             </div>
             <Report></Report>
           </div>
