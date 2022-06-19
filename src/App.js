@@ -11,7 +11,7 @@ export function App() {
   }, []);
   return (
     <div>
-      <UserContext.Provider>
+      <UserContext.Provider value="test value">
         <div className="container">
           <div>
             <div className="row row-action-height">
