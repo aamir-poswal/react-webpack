@@ -11,14 +11,16 @@ export function App() {
   }, []);
   return (
     <div>
-      <div className="container">
-        <div>
-          <div className="row row-action-height">
-            <button className="button-23">Download KML {token}</button>
+      <UserContext.Provider>
+        <div className="container">
+          <div>
+            <div className="row row-action-height">
+              <button className="button-23">Download KML {token}</button>
+            </div>
+            <Report></Report>
           </div>
-          <Report></Report>
         </div>
-      </div>
+      </UserContext.Provider>
     </div>
   );
 }
