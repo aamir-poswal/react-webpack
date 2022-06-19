@@ -18,6 +18,8 @@ const loginToFMEServer = () => {
     body: data,
     mode: "no-cors",
   }).then((response) => console.log(response));
+
+  return "testToken";
 };
 
 export default {
