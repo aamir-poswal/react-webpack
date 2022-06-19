@@ -15,7 +15,7 @@ export function App() {
   return (
     <div>
       <UserContext.Provider value={token}>
-        <div className="container">
+        <div className="container fluid">
           <div>
             {!isJobSumitted && <Job></Job>}
             {isJobSumitted && <ResultDownload></ResultDownload>}
