@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Report from "./components/Report";
 import UserContext from "./UserContext";
 import userService from "./services/userService";
+import Job from "./components/Job";
+import ResultDownload from "./components/ResultDownload";
 
 export function App() {
   var [token, setToken] = useState("");
+  var [isJobSumitted, setIsJobSubmitted] = useState(false);
   useEffect(() => {
     var token = userService.loginToFMEServer();
     setToken(token);
@@ -14,10 +17,9 @@ export function App() {
       <UserContext.Provider value={token}>
         <div className="container">
           <div>
-            <div className="row row-action-height">
-              <button className="button-23">Download KML</button>
-            </div>
-            <Report></Report>
+            {!isJobSumitted && <Job></Job>}
+            {isJobSumitted && <ResultDownload></ResultDownload>}
+            {isJobSumitted && <Report></Report>}
           </div>
         </div>
       </UserContext.Provider>
