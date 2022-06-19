@@ -11,7 +11,7 @@ export function App() {
   }, []);
   return (
     <div>
-      <UserContext.Provider value="test value">
+      <UserContext.Provider value={token}>
         <div className="container">
           <div>
             <div className="row row-action-height">
