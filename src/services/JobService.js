@@ -1,7 +1,7 @@
 import config from "../environments/TestEnvironmentConfig";
 
-const submitJob = (exportToHTML, exportToKML) => {
-  const data = { ExportToKML: exportToHTML, GenerateHTMLreport: exportToKML };
+const submitJob = (exportToHTML, exportToKML, token) => {
+  const data = { GenerateHTMLreport: exportToHTML, ExportToKML: exportToKML };
   console.log(
     `at the start of submitJob exportToHTML ${exportToHTML} exportToKML ${exportToKML}`
   );
@@ -28,7 +28,7 @@ const submitJob = (exportToHTML, exportToKML) => {
   return jobId;
 };
 
-const getJobStatus = (jobId) => {
+const getJobStatus = (jobId, token) => {
   console.log(`at the start of getJobStatus jobId ${jobId}`);
 
   fetch(

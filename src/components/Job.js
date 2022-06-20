@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import JobService from "../services/JobService";
+import UserContext from "../UserContext";
 function Job() {
   var [exportToHTML, setExportToHTML] = useState(true);
   var [exportToKML, setExportToKML] = useState(true);
   var [jobId, setJobId] = useState(null);
+  const token = useContext(UserContext);
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
-    var jobId = JobService.submitJob(exportToHTML, exportToKML);
+    var jobId = JobService.submitJob(exportToHTML, exportToKML, token);
     setJobId(jobId);
     setTimeout(function () {
-      JobService.getJobStatus(jobId);
+      JobService.getJobStatus(jobId, token);
     }, 5000);
     console.log("at the end of runJob");
   };
@@ -47,7 +49,7 @@ function Job() {
         </div>
         <div className="col pt-4">
           <button type="submit" className="btn btn-primary" onClick={runJob}>
-            Submit
+            Submit {token}
           </button>
         </div>
       </div>
