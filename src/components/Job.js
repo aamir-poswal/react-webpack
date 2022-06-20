@@ -50,7 +50,7 @@ function Job({ setCurrentJobId }) {
         </div>
         <div className="col pt-4">
           <button type="submit" className="btn btn-primary" onClick={runJob}>
-            Submit {token}
+            Submit
           </button>
         </div>
       </div>
