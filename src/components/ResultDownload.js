@@ -9,8 +9,12 @@ function ResultDownload() {
   }, []);
   return (
     <div>
-      <div className="row row-action-height">
-        <button className="button-23">Download KML</button>
+      <div className="container fluid">
+        <div className="row">
+          <div className="col pt-4 offset-md-10 offset-lg-10 pb-2">
+            <button className="btn btn-primary">Download KML</button>
+          </div>
+        </div>
       </div>
     </div>
   );
