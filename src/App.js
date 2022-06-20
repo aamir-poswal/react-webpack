@@ -8,7 +8,6 @@ import ResultDownload from "./components/ResultDownload";
 export function App() {
   var [token, setToken] = useState("");
   const [jobId, setJobId] = useState(null);
-  var [isJobSumitted, setIsJobSubmitted] = useState(false);
   const setCurrentJobId = (currentJobId) => {
     setJobId(currentJobId);
     console.log("setCurrentJobId: " + currentJobId);
@@ -22,9 +21,9 @@ export function App() {
       <UserContext.Provider value={token}>
         <div className="container fluid">
           <div>
-            {!isJobSumitted && <Job setCurrentJobId={setCurrentJobId}></Job>}
-            {isJobSumitted && <ResultDownload></ResultDownload>}
-            {isJobSumitted && <Report></Report>}
+            {!jobId && <Job setCurrentJobId={setCurrentJobId}></Job>}
+            {jobId && <ResultDownload></ResultDownload>}
+            {jobId && <Report></Report>}
           </div>
         </div>
       </UserContext.Provider>
