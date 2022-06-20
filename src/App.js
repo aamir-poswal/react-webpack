@@ -7,7 +7,12 @@ import ResultDownload from "./components/ResultDownload";
 
 export function App() {
   var [token, setToken] = useState("");
+  const [jobId, setJobId] = useState(null);
   var [isJobSumitted, setIsJobSubmitted] = useState(false);
+  const setCurrentJobId = (currentJobId) => {
+    setJobId(currentJobId);
+    console.log("setCurrentJobId: " + currentJobId);
+  };
   useEffect(() => {
     var token = userService.loginToFMEServer();
     setToken(token);
@@ -17,7 +22,7 @@ export function App() {
       <UserContext.Provider value={token}>
         <div className="container fluid">
           <div>
-            {!isJobSumitted && <Job></Job>}
+            {!isJobSumitted && <Job setCurrentJobId={setCurrentJobId}></Job>}
             {isJobSumitted && <ResultDownload></ResultDownload>}
             {isJobSumitted && <Report></Report>}
           </div>

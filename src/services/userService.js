@@ -11,6 +11,7 @@ const pingFMEServer = () => {
 };
 
 const loginToFMEServer = () => {
+  console.log("at the start of loginToFMEServer");
   var data = `user=${config.fmeUserName}&password=${config.fmePassword}&expirationTimeout=360000`;
   fetch(`${config.fmeCloudServerBaseURL}/fmetoken/service/generate`, {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -18,7 +19,7 @@ const loginToFMEServer = () => {
     body: data,
     mode: "no-cors",
   }).then((response) => console.log(response));
-
+  console.log("at the end of loginToFMEServer");
   return "testTokenFromUserService";
 };
 

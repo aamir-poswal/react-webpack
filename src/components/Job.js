@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import JobService from "../services/JobService";
 import UserContext from "../UserContext";
-function Job() {
+function Job({ setCurrentJobId }) {
   var [exportToHTML, setExportToHTML] = useState(true);
   var [exportToKML, setExportToKML] = useState(true);
   var [jobId, setJobId] = useState(null);
@@ -11,6 +11,7 @@ function Job() {
     console.log("at the start of runJob");
     var jobId = JobService.submitJob(exportToHTML, exportToKML, token);
     setJobId(jobId);
+    setCurrentJobId(jobId);
     setTimeout(function () {
       JobService.getJobStatus(jobId, token);
     }, 5000);
