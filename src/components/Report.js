@@ -1,12 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import UserContext from "../UserContext";
 import JobContext from "../JobContext";
+import ResultService from "../services/ResultService";
 import ReactDOM from "react-dom";
 const Report = () => {
   const token = useContext(UserContext);
   const jobId = useContext(JobContext);
   useEffect(() => {
     console.log(`job id in report component ${jobId}`);
+    ResultService.downloadHTMLReport(jobId, token);
   }, []);
   return (
     <div>
