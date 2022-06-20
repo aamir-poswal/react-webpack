@@ -2,6 +2,9 @@ import config from "../environments/TestEnvironmentConfig";
 
 const submitJob = (exportToHTML, exportToKML) => {
   const data = { ExportToKML: exportToHTML, GenerateHTMLreport: exportToKML };
+  console.log(
+    `at the start of submitJob exportToHTML ${exportToHTML} exportToKML ${exportToKML}`
+  );
   fetch(
     `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
     {
@@ -13,11 +16,21 @@ const submitJob = (exportToHTML, exportToKML) => {
       body: JSON.stringify(data),
       mode: "no-cors",
     }
-  ).then((response) => console.log(response));
-  return 2278;
+  )
+    .then((response) => console.log(response))
+    .catch(function () {
+      console.log("error");
+    });
+
+  let jobId = 2278;
+  console.log(`at the end of submitJob jobId ${jobId}`);
+
+  return jobId;
 };
 
 const getJobStatus = (jobId) => {
+  console.log(`at the start of getJobStatus jobId ${jobId}`);
+
   fetch(
     `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/jobs/id/${jobId}`,
     {
@@ -27,7 +40,13 @@ const getJobStatus = (jobId) => {
       method: "GET",
       mode: "no-cors",
     }
-  ).then((response) => console.log(response));
+  )
+    .then((response) => console.log(response))
+    .catch(function () {
+      console.log("error");
+    });
+
+  console.log(`at the end of getJobStatus jobId ${jobId}`);
 };
 
 export default {
