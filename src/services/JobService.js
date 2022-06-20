@@ -1,7 +1,7 @@
 import config from "../environments/TestEnvironmentConfig";
 
-const submitJob = () => {
-  const data = { ExportToKML: "Yes", GenerateHTMLreport: "Yes" };
+const submitJob = (exportToHTML, exportToKML) => {
+  const data = { ExportToKML: exportToHTML, GenerateHTMLreport: exportToKML };
   fetch(
     `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
     {
@@ -14,11 +14,12 @@ const submitJob = () => {
       mode: "no-cors",
     }
   ).then((response) => console.log(response));
+  return 2278;
 };
 
-const getJobStatus = () => {
+const getJobStatus = (jobId) => {
   fetch(
-    `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/jobs/id/2265`,
+    `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/jobs/id/${jobId}`,
     {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
