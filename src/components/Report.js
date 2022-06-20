@@ -10,9 +10,10 @@ const Report = () => {
   }, []);
   return (
     <div>
-      <div className="row row-action-height">
-        <p>html report</p>
-        <pre>{JSON.stringify(user, null, 2)}</pre>
+      <div className="container fluid">
+        <div className="row">
+          <p>html report</p>
+        </div>
       </div>
     </div>
   );
