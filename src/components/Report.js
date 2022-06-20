@@ -3,7 +3,7 @@ import UserContext from "../UserContext";
 import JobContext from "../JobContext";
 import ReactDOM from "react-dom";
 const Report = () => {
-  const user = useContext(UserContext);
+  const token = useContext(UserContext);
   const jobId = useContext(JobContext);
   useEffect(() => {
     console.log(`job id in report component ${jobId}`);
