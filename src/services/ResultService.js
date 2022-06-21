@@ -1,18 +1,16 @@
 import config from "../environments/TestEnvironmentConfig";
 
 const downloadHTMLReport = async (jobId, token) => {
-  const data = { jobId: jobId };
   console.log(`at the start of downloadHTMLReport jobId ${jobId}`);
   var response = await fetch(
-    `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
+    `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/bar`,
     {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
+        Accept: "application/octet-stream",
         Authorization: `fmetoken token=${token}`,
       },
-      method: "POST",
-      body: JSON.stringify(data),
+      method: "GET",
     }
   ).catch(function () {
     console.log("error");
@@ -22,18 +20,16 @@ const downloadHTMLReport = async (jobId, token) => {
 };
 
 const downloadKML = async (jobId, token) => {
-  const data = { jobId: jobId };
   console.log(`at the start of downloadKML jobId ${jobId}`);
-  var response = fetch(
-    `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
+  response = await fetch(
+    `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.kml`,
     {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
+        Accept: "application/octet-stream",
         Authorization: `fmetoken token=${token}`,
       },
-      method: "POST",
-      body: JSON.stringify(data),
+      method: "GET",
     }
   ).catch(function () {
     console.log("error");
