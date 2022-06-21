@@ -9,9 +9,11 @@ function Job({ setCurrentJobId }) {
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
-    var jobId = JobService.submitJob(exportToHTML, exportToKML, token);
-    setJobId(jobId);
-    setCurrentJobId(jobId);
+    // JobService.submitJob(exportToHTML, exportToKML, token).then((jobId) => {
+    //   setJobId(jobId);
+    //   setCurrentJobId(jobId);
+    // });
+
     setTimeout(function () {
       JobService.getJobStatus(jobId, token);
     }, 5000);

@@ -19,7 +19,9 @@ const loginToFMEServer = async () => {
       method: "POST",
       body: data,
     }
-  );
+  ).catch(function (error) {
+    console.log(error);
+  });
   var token = await response.text();
   console.log("at the end of loginToFMEServer ");
   return token;

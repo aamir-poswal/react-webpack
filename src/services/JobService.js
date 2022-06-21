@@ -1,28 +1,26 @@
 import config from "../environments/TestEnvironmentConfig";
 
-const submitJob = (exportToHTML, exportToKML, token) => {
+const submitJob = async (exportToHTML, exportToKML, token) => {
   const data = { GenerateHTMLreport: exportToHTML, ExportToKML: exportToKML };
   console.log(
-    `at the start of submitJob exportToHTML ${exportToHTML} exportToKML ${exportToKML}`
+    `at the start of submitJob exportToHTML ${exportToHTML} exportToKML ${exportToKML} token ${token}`
   );
-  fetch(
+  var response = await fetch(
     `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
     {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
         Accept: "application/json",
+        Authorization: `fmetoken ${token}`,
       },
       method: "POST",
       body: JSON.stringify(data),
-      mode: "no-cors",
     }
-  )
-    .then((response) => console.log(response))
-    .catch(function (error) {
-      console.log(error);
-    });
+  ).catch(function (error) {
+    console.log(error);
+  });
 
-  let jobId = 2278;
+  let jobId = await response.json();
   console.log(`at the end of submitJob jobId ${jobId}`);
 
   return jobId;
@@ -30,23 +28,21 @@ const submitJob = (exportToHTML, exportToKML, token) => {
 
 const getJobStatus = (jobId, token) => {
   console.log(`at the start of getJobStatus jobId ${jobId}`);
-
   fetch(
-    `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/jobs/id/${jobId}`,
+    " https://volue-geminitest.fmecloud.com/fmerest/v3/transformations/jobs/id/2278",
     {
       headers: {
-        "Content-Type": "application/json; charset=utf-8",
+        "Content-Type": "application/json;charset=UTF-8",
+        Accept: "application/json",
+        Authorization: `fmetoken ${token}`,
       },
       method: "GET",
-      mode: "no-cors",
     }
   )
-    .then((response) => console.log(response))
-    .catch(function (error) {
-      console.log(error);
-    });
+    .then((result) => result.json())
+    .then((response) => console.log(response));
 
-  console.log(`at the end of getJobStatus jobId ${jobId}`);
+  console.log(`at the end of getJobStatus jobId `);
 };
 
 export default {
