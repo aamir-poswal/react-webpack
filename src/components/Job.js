@@ -20,7 +20,7 @@ function Job({ setCurrentJobId }) {
   return (
     <div className="container fluid">
       <div className="row">
-        <div className="col pt-4">
+        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
           <div className="form-check">
             <input
               type="checkbox"
@@ -34,7 +34,7 @@ function Job({ setCurrentJobId }) {
             </label>
           </div>
         </div>
-        <div className="col pt-4">
+        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
           <div className="form-check">
             <input
               type="checkbox"
@@ -48,7 +48,7 @@ function Job({ setCurrentJobId }) {
             </label>
           </div>
         </div>
-        <div className="col pt-4">
+        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
           <button type="submit" className="btn btn-primary" onClick={runJob}>
             Submit
           </button>
