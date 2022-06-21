@@ -12,7 +12,7 @@ function ResultDownload() {
   const downloadKML = (event) => {
     console.log(`at the start of downloadKML job id ${jobId}`);
     event.preventDefault();
-    ResultService.downloadKML(jobId, token);
+    //ResultService.downloadKML(jobId, token);
     console.log(`at the end of downloadKML job id ${jobId}`);
   };
 

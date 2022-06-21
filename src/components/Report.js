@@ -8,7 +8,7 @@ const Report = () => {
   const jobId = useContext(JobContext);
   useEffect(() => {
     console.log(`job id in report component ${jobId}`);
-    ResultService.downloadHTMLReport(jobId, token);
+    //ResultService.downloadHTMLReport(jobId, token);
   }, []);
   return (
     <div>
