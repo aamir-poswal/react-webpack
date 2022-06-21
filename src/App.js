@@ -14,8 +14,9 @@ export function App() {
     console.log("setCurrentJobId: " + currentJobId);
   };
   useEffect(() => {
-    var token = userService.loginToFMEServer();
-    setToken(token);
+    userService.loginToFMEServer().then((token) => {
+      setToken(token);
+    });
   }, []);
   return (
     <div>

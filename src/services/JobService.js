@@ -18,8 +18,8 @@ const submitJob = (exportToHTML, exportToKML, token) => {
     }
   )
     .then((response) => console.log(response))
-    .catch(function () {
-      console.log("error");
+    .catch(function (error) {
+      console.log(error);
     });
 
   let jobId = 2278;
@@ -42,8 +42,8 @@ const getJobStatus = (jobId, token) => {
     }
   )
     .then((response) => console.log(response))
-    .catch(function () {
-      console.log("error");
+    .catch(function (error) {
+      console.log(error);
     });
 
   console.log(`at the end of getJobStatus jobId ${jobId}`);
