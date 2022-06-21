@@ -3,7 +3,7 @@ import config from "../environments/TestEnvironmentConfig";
 const downloadHTMLReport = async (jobId, token) => {
   console.log(`at the start of downloadHTMLReport jobId ${jobId}`);
   var response = await fetch(
-    `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/bar`,
+    `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.html`,
     {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
@@ -15,6 +15,26 @@ const downloadHTMLReport = async (jobId, token) => {
   ).catch(function () {
     console.log("error");
   });
+
+  // var myBlob = new Blob(["Hello"], { type: "text/plain" });
+  // var myReader = new FileReader();
+  // //handler executed once reading(blob content referenced to a variable) from blob is finished.
+  // myReader.addEventListener("loadend", function (e) {
+  //   document.getElementById("text").innerHTML = e.srcElement.result; //prints a string
+  // });
+  // //start the reading process.
+  // myReader.readAsText(myBlob);
+
+  let myBlob = await response.blob();
+  let myReader = new FileReader();
+  //handler executed once reading(blob content referenced to a variable) from blob is finished.
+  myReader.addEventListener("loadend", function (e) {
+    console.log(
+      `src element ${e.srcElement.result} target result ${e.target.result}`
+    );
+  });
+  //start the reading process.
+  myReader.readAsText(myBlob);
 
   console.log(`at the end of downloadHTMLReport jobId ${jobId}`);
 };
