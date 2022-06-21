@@ -9,14 +9,10 @@ function Job({ setCurrentJobId }) {
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
-    // JobService.submitJob(exportToHTML, exportToKML, token).then((jobId) => {
-    //   setJobId(jobId);
-    //   setCurrentJobId(jobId);
-    // });
-
-    setTimeout(function () {
-      JobService.getJobStatus(jobId, token);
-    }, 5000);
+    JobService.submitJob(exportToHTML, exportToKML, token).then((jobId) => {
+      setJobId(jobId);
+      setCurrentJobId(jobId);
+    });
     console.log("at the end of runJob");
   };
   return (

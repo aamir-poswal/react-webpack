@@ -11,7 +11,7 @@ const submitJob = async (exportToHTML, exportToKML, token) => {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
         Accept: "application/json",
-        Authorization: `fmetoken ${token}`,
+        Authorization: `fmetoken token=${token}`,
       },
       method: "POST",
       body: JSON.stringify(data),
@@ -29,12 +29,12 @@ const submitJob = async (exportToHTML, exportToKML, token) => {
 const getJobStatus = (jobId, token) => {
   console.log(`at the start of getJobStatus jobId ${jobId}`);
   fetch(
-    " https://volue-geminitest.fmecloud.com/fmerest/v3/transformations/jobs/id/2278",
+    `https://volue-geminitest.fmecloud.com/fmerest/v3/transformations/jobs/id/${jobId}`,
     {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
         Accept: "application/json",
-        Authorization: `fmetoken ${token}`,
+        Authorization: `fmetoken token=${token}`,
       },
       method: "GET",
     }
