@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react";
 import JobService from "../services/JobService";
 import UserContext from "../UserContext";
 function Job({ setCurrentJobId }) {
-  var [exportToHTML, setExportToHTML] = useState(true);
-  var [exportToKML, setExportToKML] = useState(true);
-  var [jobId, setJobId] = useState(null);
+  let [exportToHTML, setExportToHTML] = useState(true);
+  let [exportToKML, setExportToKML] = useState(true);
+  let [jobId, setJobId] = useState(null);
   const token = useContext(UserContext);
   const runJob = (event) => {
     event.preventDefault();
