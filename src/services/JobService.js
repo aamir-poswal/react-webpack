@@ -5,7 +5,7 @@ const submitJob = async (exportToHTML, exportToKML, token) => {
   console.log(
     `at the start of submitJob exportToHTML ${exportToHTML} exportToKML ${exportToKML} token ${token}`
   );
-  var response = await fetch(
+  let response = await fetch(
     `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
     {
       headers: {

@@ -20,7 +20,7 @@ const Report = () => {
     });
   }, []);
 
-  const createMarkup = () => {
+  const renderReportHTMLMarkup = () => {
     return { __html: htmlContent };
   };
 
@@ -28,7 +28,7 @@ const Report = () => {
     <div>
       <div className="container fluid">
         <div className="row">
-          <div dangerouslySetInnerHTML={createMarkup()}></div>
+          <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
         </div>
       </div>
     </div>
