@@ -29,9 +29,8 @@ const downloadHTMLReport = async (jobId, token) => {
   let myReader = new FileReader();
   //handler executed once reading(blob content referenced to a variable) from blob is finished.
   myReader.addEventListener("loadend", function (e) {
-    console.log(
-      `src element ${e.srcElement.result} target result ${e.target.result}`
-    );
+    console.log(` target result ${e.target.result}`);
+    document.getElementById("text").innerHTML = e.target.result; //prints a string
   });
   //start the reading process.
   myReader.readAsText(myBlob);
