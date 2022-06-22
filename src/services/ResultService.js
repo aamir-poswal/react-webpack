@@ -17,15 +17,8 @@ const downloadHTMLReport = async (jobId, token) => {
   });
 
   let myBlob = await response.blob();
-  let myReader = new FileReader();
-  //handler executed once reading(blob content referenced to a variable) from blob is finished.
-  myReader.addEventListener("loadend", function (e) {
-    document.getElementById("text").innerHTML = e.target.result; //prints a string
-  });
-  //start the reading process.
-  myReader.readAsText(myBlob);
-
   console.log(`at the end of downloadHTMLReport jobId ${jobId}`);
+  return myBlob;
 };
 
 const downloadKML = async (jobId, token) => {
