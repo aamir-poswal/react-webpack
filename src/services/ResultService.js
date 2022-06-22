@@ -16,20 +16,10 @@ const downloadHTMLReport = async (jobId, token) => {
     console.log("error");
   });
 
-  // var myBlob = new Blob(["Hello"], { type: "text/plain" });
-  // var myReader = new FileReader();
-  // //handler executed once reading(blob content referenced to a variable) from blob is finished.
-  // myReader.addEventListener("loadend", function (e) {
-  //   document.getElementById("text").innerHTML = e.srcElement.result; //prints a string
-  // });
-  // //start the reading process.
-  // myReader.readAsText(myBlob);
-
   let myBlob = await response.blob();
   let myReader = new FileReader();
   //handler executed once reading(blob content referenced to a variable) from blob is finished.
   myReader.addEventListener("loadend", function (e) {
-    console.log(` target result ${e.target.result}`);
     document.getElementById("text").innerHTML = e.target.result; //prints a string
   });
   //start the reading process.
