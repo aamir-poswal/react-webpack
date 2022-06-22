@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   output: {
-    filename: "index.bundle.js",
+    filename: "FireFlowWidget.js",
   },
   devServer: {
     port: 3010,
