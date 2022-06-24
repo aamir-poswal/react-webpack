@@ -2,3 +2,4 @@ node_modules
 dist
 .env
 *.lock
+src/environments/testEnvironmentConfig.js
