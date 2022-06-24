@@ -1,4 +1,6 @@
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
+//require('dotenv').config({ path: path.resolve(__dirname, './.env') })
 module.exports = {
   output: {
     library: "EBAWidget",
@@ -42,6 +44,7 @@ module.exports = {
       },
     ],
   },
+  plugins: [new Dotenv()],
   externals: {
     react: {
       root: "React",
