@@ -3,3 +3,4 @@ dist
 .env
 *.lock
 src/environments/testEnvironmentConfig.js
+package-lock.json

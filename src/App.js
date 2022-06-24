@@ -2,7 +2,7 @@ import React from "react";
 import "./App.scss";
 const App = () => {
   return (
-    <div>
+    <div className="container fluid">
       <h1>React App {process.env.API_KEY}</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos
