@@ -20,8 +20,8 @@ function Job({ setCurrentJobId }) {
   return (
     <div className="container fluid">
       <div className="row">
-        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
-          <div className="form-check">
+        <div className="col">
+          <div className="form-check pt-5">
             <input
               type="checkbox"
               className="form-check-input"
@@ -33,9 +33,7 @@ function Job({ setCurrentJobId }) {
               Export To HTML
             </label>
           </div>
-        </div>
-        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
-          <div className="form-check">
+          <div className="form-check pt-3">
             <input
               type="checkbox"
               className="form-check-input"
@@ -47,11 +45,15 @@ function Job({ setCurrentJobId }) {
               Export To KML
             </label>
           </div>
-        </div>
-        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
-          <button type="submit" className="btn btn-primary" onClick={runJob}>
-            Submit
-          </button>
+          <div className="pt-3">
+            <button
+              type="submit"
+              className="btn btn-light btn-outline-secondary"
+              onClick={runJob}
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -20,8 +20,8 @@ function ResultDownload() {
     <div>
       <div className="container fluid">
         <div className="row">
-          <div className="col pt-4 offset-md-10 offset-lg-10 pb-2">
-            <button className="btn btn-primary" onClick={downloadKML}>
+          <div className="col-lg-2 col-md-3 col-sm-6 col-xs-8  pt-4 offset-lg-10 offset-md-9 offset-sm-6 offset-xs-4  pb-2">
+            <button className="btn btn-outline-secondary" onClick={downloadKML}>
               Download KML
             </button>
           </div>

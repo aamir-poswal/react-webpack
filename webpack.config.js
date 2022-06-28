@@ -33,11 +33,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new Dotenv(),
-    new MiniCssExtractPlugin(),
-    // new webpack.DefinePlugin({
-    //   process: { env: {} },
-    // }),
-  ],
+  plugins: [new Dotenv(), new MiniCssExtractPlugin()],
 };

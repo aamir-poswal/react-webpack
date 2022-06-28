@@ -13,9 +13,8 @@ const Report = () => {
     ResultService.downloadHTMLReport(jobId, token).then((myBlob) => {
       let myReader = new FileReader();
       myReader.addEventListener("loadend", function (e) {
-        setHTMLContent(e.target.result); //prints a string
+        setHTMLContent(e.target.result);
       });
-      //start the reading process.
       myReader.readAsText(myBlob);
     });
   }, []);
@@ -28,7 +27,9 @@ const Report = () => {
     <div>
       <div className="container fluid">
         <div className="row">
-          <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
+          <div className="col">
+            <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
+          </div>
         </div>
       </div>
     </div>
