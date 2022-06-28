@@ -20,17 +20,23 @@ export function App() {
   }, []);
   return (
     <div>
-      <UserContext.Provider value={token}>
-        <div className="container fluid">
-          <div>{!jobId && <Job setCurrentJobId={setCurrentJobId}></Job>}</div>
-          <JobContext.Provider value={jobId}>
-            <div>
-              {jobId && <ResultDownload></ResultDownload>}
-              {jobId && <Report></Report>}
+      {token && (
+        <div>
+          <UserContext.Provider value={token}>
+            <div className="container fluid">
+              <div>
+                {!jobId && <Job setCurrentJobId={setCurrentJobId}></Job>}
+              </div>
+              <JobContext.Provider value={jobId}>
+                <div>
+                  {jobId && <ResultDownload></ResultDownload>}
+                  {jobId && <Report></Report>}
+                </div>
+              </JobContext.Provider>
             </div>
-          </JobContext.Provider>
+          </UserContext.Provider>
         </div>
-      </UserContext.Provider>
+      )}
     </div>
   );
 }
