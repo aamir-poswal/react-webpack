@@ -27,7 +27,7 @@ const Report = () => {
     <div>
       <div className="container fluid">
         <div className="row">
-          <div className="col">
+          <div className="col-11">
             <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
           </div>
         </div>
