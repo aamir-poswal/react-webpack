@@ -5,7 +5,7 @@ import userService from "./services/userService";
 import Job from "./components/Job";
 import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
-import "./App.scss";
+import "./Styles/App.scss";
 
 const App = () => {
   const [token, setToken] = useState("");
