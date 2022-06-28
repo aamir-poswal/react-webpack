@@ -4,3 +4,6 @@ dist
 *.lock
 src/environments/testEnvironmentConfig.js
 package-lock.json
+dist/**
+dist/*.*
+*.env
