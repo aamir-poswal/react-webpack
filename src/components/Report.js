@@ -4,7 +4,7 @@ import JobContext from "../JobContext";
 import ResultService from "../services/ResultService";
 
 const Report = () => {
-  let [htmlContent, setHTMLContent] = useState(true);
+  const [htmlContent, setHTMLContent] = useState(true);
   const token = useContext(UserContext);
   const jobId = useContext(JobContext);
 

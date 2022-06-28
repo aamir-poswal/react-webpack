@@ -2,18 +2,15 @@ import React, { useState, useContext } from "react";
 import JobService from "../services/JobService";
 import UserContext from "../UserContext";
 function Job({ setCurrentJobId }) {
-  let [exportToHTML, setExportToHTML] = useState(true);
-  let [exportToKML, setExportToKML] = useState(true);
-  let [jobId, setJobId] = useState(null);
+  const [exportToHTML, setExportToHTML] = useState(true);
+  const [exportToKML, setExportToKML] = useState(true);
   const token = useContext(UserContext);
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
     // JobService.submitJob(exportToHTML, exportToKML, token).then((jobId) => {
-    //   setJobId(jobId);
     //   setCurrentJobId(jobId);
     // });
-    setJobId(2278);
     setCurrentJobId(2278);
     console.log("at the end of runJob");
   };

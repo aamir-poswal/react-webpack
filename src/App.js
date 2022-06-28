@@ -7,7 +7,7 @@ import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
 
 export function App() {
-  let [token, setToken] = useState("");
+  const [token, setToken] = useState("");
   const [jobId, setJobId] = useState(null);
   const setCurrentJobId = (currentJobId) => {
     setJobId(currentJobId);
