@@ -1,8 +1,11 @@
 node_modules
 dist
-*.env
+.env
 package-lock.json
 package-lock.json
 *.lock
 package-lock.json
 package-lock.json
+dist/**
+dist/*.*
+*.env
