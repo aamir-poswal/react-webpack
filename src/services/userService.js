@@ -1,7 +1,7 @@
 import config from "../environments/TestEnvironmentConfig";
 
 const loginToFMEServer = async () => {
-  console.log("at the start of loginToFMEServer");
+  console.log("loginToFMEServer at the start");
   const data = `user=${config.fmeUserName}&password=${config.fmePassword}&expirationTimeout=360000`;
   const response = await fetch(
     `${config.fmeCloudServerBaseURL}/fmetoken/service/generate`,
@@ -13,8 +13,10 @@ const loginToFMEServer = async () => {
   ).catch(function (error) {
     console.log(error);
   });
+  var status = await response.status;
+  console.log(`loginToFMEServer response status ${status}`);
   const token = await response.text();
-  console.log("at the end of loginToFMEServer ");
+  console.log("loginToFMEServer at the end");
   return token;
 };
 
