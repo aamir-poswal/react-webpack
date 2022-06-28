@@ -2,7 +2,7 @@ import config from "../environments/TestEnvironmentConfig";
 
 const downloadHTMLReport = async (jobId, token) => {
   console.log(`at the start of downloadHTMLReport jobId ${jobId}`);
-  let response = await fetch(
+  const response = await fetch(
     `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.html`,
     {
       headers: {
@@ -16,7 +16,7 @@ const downloadHTMLReport = async (jobId, token) => {
     console.log("error");
   });
 
-  let myBlob = await response.blob();
+  const myBlob = await response.blob();
   console.log(`at the end of downloadHTMLReport jobId ${jobId}`);
   return myBlob;
 };

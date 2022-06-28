@@ -11,8 +11,8 @@ const pingFMEServer = () => {
 
 const loginToFMEServer = async () => {
   console.log("at the start of loginToFMEServer");
-  let data = `user=${config.fmeUserName}&password=${config.fmePassword}&expirationTimeout=360000`;
-  let response = await fetch(
+  const data = `user=${config.fmeUserName}&password=${config.fmePassword}&expirationTimeout=360000`;
+  const response = await fetch(
     `${config.fmeCloudServerBaseURL}/fmetoken/service/generate`,
     {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -22,7 +22,7 @@ const loginToFMEServer = async () => {
   ).catch(function (error) {
     console.log(error);
   });
-  let token = await response.text();
+  const token = await response.text();
   console.log("at the end of loginToFMEServer ");
   return token;
 };
