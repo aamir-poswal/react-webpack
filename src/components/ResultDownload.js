@@ -12,7 +12,12 @@ function ResultDownload() {
   const downloadKML = (event) => {
     console.log(`at the start of downloadKML job id ${jobId}`);
     event.preventDefault();
-    ResultService.downloadKML(jobId, token);
+
+    const download = async () => {
+      await ResultService.downloadKML(jobId, token);
+    };
+    download().catch(console.error);
+
     console.log(`at the end of downloadKML job id ${jobId}`);
   };
 

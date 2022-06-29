@@ -8,9 +8,13 @@ function Job({ setCurrentJobId }) {
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
-    // JobService.submitJob(exportToHTML, exportToKML, token).then((jobId) => {
+
+    // const runJob = async () => {
+    //   var jobId = await JobService.submitJob(exportToHTML, exportToKML, token);
     //   setCurrentJobId(jobId);
-    // });
+    // };
+    // runJob().catch(console.error);
+
     setCurrentJobId(2278);
     console.log("at the end of runJob");
   };

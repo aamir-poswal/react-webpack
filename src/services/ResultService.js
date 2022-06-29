@@ -48,6 +48,7 @@ const downloadKML = async (jobId, token) => {
     console.log(`downloadKML response status ${status} ${status === 200}`);
     if (status !== 200) {
       console.log("downloadKML unexpected response from server");
+      return null;
     }
     let blob = await response.blob();
     let url = window.URL.createObjectURL(blob);
@@ -61,6 +62,7 @@ const downloadKML = async (jobId, token) => {
     console.log(`at the end of downloadKML jobId ${jobId}`);
   } catch (error) {
     console.log(`downloadKML error ${error}`);
+    return null;
   }
 };
 

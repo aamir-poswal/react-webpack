@@ -10,13 +10,15 @@ const Report = () => {
 
   useEffect(() => {
     console.log(`job id in report component ${jobId}`);
-    ResultService.downloadHTMLReport(jobId, token).then((myBlob) => {
+    const displayHTMLReport = async () => {
+      var myBlob = await ResultService.downloadHTMLReport(jobId, token);
       let myReader = new FileReader();
       myReader.addEventListener("loadend", function (e) {
         setHTMLContent(e.target.result);
       });
       myReader.readAsText(myBlob);
-    });
+    };
+    displayHTMLReport().catch(console.error);
   }, []);
 
   const renderReportHTMLMarkup = () => {

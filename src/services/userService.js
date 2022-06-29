@@ -16,12 +16,14 @@ const loginToFMEServer = async () => {
     console.log(`loginToFMEServer response status ${status} ${status === 200}`);
     if (status !== 200) {
       console.log("loginToFMEServer unexpected response from server");
+      return null;
     }
     const token = await response.text();
     console.log("loginToFMEServer at the end");
     return token;
   } catch (error) {
     console.log(`loginToFMEServer error ${error}`);
+    return null;
   }
 };
 
