@@ -14,7 +14,7 @@ const downloadHTMLReport = async (jobId, token) => {
         method: "GET",
       }
     );
-    let status = await response.status;
+    const status = await response.status;
     console.log(
       `downloadHTMLReport response status ${status} ${status === 200}`
     );
@@ -26,7 +26,8 @@ const downloadHTMLReport = async (jobId, token) => {
     console.log(`at the end of downloadHTMLReport jobId ${jobId}`);
     return myBlob;
   } catch (error) {
-    console.log(`downloadHTMLReport error ${error}`);
+    console.error(`downloadHTMLReport error ${error}`);
+    return null;
   }
 };
 
@@ -44,7 +45,7 @@ const downloadKML = async (jobId, token) => {
         method: "GET",
       }
     );
-    let status = await response.status;
+    const status = await response.status;
     console.log(`downloadKML response status ${status} ${status === 200}`);
     if (status !== 200) {
       console.log("downloadKML unexpected response from server");
@@ -61,7 +62,7 @@ const downloadKML = async (jobId, token) => {
 
     console.log(`at the end of downloadKML jobId ${jobId}`);
   } catch (error) {
-    console.log(`downloadKML error ${error}`);
+    console.error(`downloadKML error ${error}`);
     return null;
   }
 };

@@ -16,7 +16,9 @@ function ResultDownload() {
     const download = async () => {
       await ResultService.downloadKML(jobId, token);
     };
-    download().catch(console.error);
+    download().catch((error) => {
+      console.error("downloadKML download Error:", error);
+    });
 
     console.log(`at the end of downloadKML job id ${jobId}`);
   };

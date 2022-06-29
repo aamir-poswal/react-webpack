@@ -18,7 +18,9 @@ export function App() {
       var token = await UserService.loginToFMEServer();
       setToken(token);
     };
-    login().catch(console.error);
+    login().catch((error) => {
+      console.error("login Error:", error);
+    });
   }, []);
 
   return (

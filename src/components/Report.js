@@ -12,13 +12,18 @@ const Report = () => {
     console.log(`job id in report component ${jobId}`);
     const displayHTMLReport = async () => {
       var myBlob = await ResultService.downloadHTMLReport(jobId, token);
+      if (!myBlob) {
+        return;
+      }
       let myReader = new FileReader();
       myReader.addEventListener("loadend", function (e) {
         setHTMLContent(e.target.result);
       });
       myReader.readAsText(myBlob);
     };
-    displayHTMLReport().catch(console.error);
+    displayHTMLReport().catch((error) => {
+      console.error("displayHTMLReport Error:", error);
+    });
   }, []);
 
   const renderReportHTMLMarkup = () => {

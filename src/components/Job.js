@@ -13,7 +13,9 @@ function Job({ setCurrentJobId }) {
     //   var jobId = await JobService.submitJob(exportToHTML, exportToKML, token);
     //   setCurrentJobId(jobId);
     // };
-    // runJob().catch(console.error);
+    // runJob().catch((error) => {
+    //   console.error("runJob Error:", error);
+    // });
 
     setCurrentJobId(2278);
     console.log("at the end of runJob");
