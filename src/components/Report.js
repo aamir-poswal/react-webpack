@@ -10,13 +10,20 @@ const Report = () => {
 
   useEffect(() => {
     console.log(`job id in report component ${jobId}`);
-    ResultService.downloadHTMLReport(jobId, token).then((myBlob) => {
+    const displayHTMLReport = async () => {
+      var myBlob = await ResultService.downloadHTMLReport(jobId, token);
+      if (!myBlob) {
+        console.error("displayHTMLReport no file contents from server");
+        return;
+      }
       let myReader = new FileReader();
       myReader.addEventListener("loadend", function (e) {
-        setHTMLContent(e.target.result); //prints a string
+        setHTMLContent(e.target.result);
       });
-      //start the reading process.
       myReader.readAsText(myBlob);
+    };
+    displayHTMLReport().catch((error) => {
+      console.error("displayHTMLReport Error:", error);
     });
   }, []);
 
@@ -28,7 +35,9 @@ const Report = () => {
     <div>
       <div className="container fluid">
         <div className="row">
-          <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
+          <div className="col-11">
+            <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
+          </div>
         </div>
       </div>
     </div>

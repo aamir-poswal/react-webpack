@@ -4,24 +4,27 @@ import UserContext from "../UserContext";
 function Job({ setCurrentJobId }) {
   const [exportToHTML, setExportToHTML] = useState(true);
   const [exportToKML, setExportToKML] = useState(true);
-  const [jobId, setJobId] = useState(null);
   const token = useContext(UserContext);
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
-    // JobService.submitJob(exportToHTML, exportToKML, token).then((jobId) => {
-    //   setJobId(jobId);
+
+    // const runJob = async () => {
+    //   var jobId = await JobService.submitJob(exportToHTML, exportToKML, token);
     //   setCurrentJobId(jobId);
+    // };
+    // runJob().catch((error) => {
+    //   console.error("runJob Error:", error);
     // });
-    setJobId(2278);
+
     setCurrentJobId(2278);
     console.log("at the end of runJob");
   };
   return (
     <div className="container fluid">
       <div className="row">
-        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
-          <div className="form-check">
+        <div className="col">
+          <div className="form-check pt-5">
             <input
               type="checkbox"
               className="form-check-input"
@@ -33,9 +36,7 @@ function Job({ setCurrentJobId }) {
               Export To HTML
             </label>
           </div>
-        </div>
-        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
-          <div className="form-check">
+          <div className="form-check pt-3">
             <input
               type="checkbox"
               className="form-check-input"
@@ -47,11 +48,15 @@ function Job({ setCurrentJobId }) {
               Export To KML
             </label>
           </div>
-        </div>
-        <div className="col-sm-4 col-xs-4 col-md-2 col-lg-2 pt-4">
-          <button type="submit" className="btn btn-primary" onClick={runJob}>
-            Submit
-          </button>
+          <div className="pt-3">
+            <button
+              type="submit"
+              className="btn btn-light btn-outline-secondary"
+              onClick={runJob}
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </div>

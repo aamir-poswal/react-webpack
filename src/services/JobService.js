@@ -5,47 +5,35 @@ const submitJob = async (exportToHTML, exportToKML, token) => {
   console.log(
     `at the start of submitJob exportToHTML ${exportToHTML} exportToKML ${exportToKML} token ${token}`
   );
-  let response = await fetch(
-    `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
-    {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
-        Authorization: `fmetoken token=${token}`,
-      },
-      method: "POST",
-      body: JSON.stringify(data),
+  try {
+    const response = await fetch(
+      `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
+      {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+          Authorization: `fmetoken token=${token}`,
+        },
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+    const status = await response.status;
+    console.log(`submitJob response status ${status} ${status === 200}`);
+    if (status !== 200) {
+      console.log("submitJob unexpected response from server");
+      return null;
     }
-  ).catch(function (error) {
-    console.log(error);
-  });
+    let jobId = await response.json();
+    console.log(`at the end of submitJob jobId ${jobId}`);
 
-  let jobId = await response.json();
-  console.log(`at the end of submitJob jobId ${jobId}`);
-
-  return jobId;
-};
-
-const getJobStatus = (jobId, token) => {
-  console.log(`at the start of getJobStatus jobId ${jobId}`);
-  fetch(
-    `https://volue-geminitest.fmecloud.com/fmerest/v3/transformations/jobs/id/${jobId}`,
-    {
-      headers: {
-        "Content-Type": "application/json;charset=UTF-8",
-        Accept: "application/json",
-        Authorization: `fmetoken token=${token}`,
-      },
-      method: "GET",
-    }
-  )
-    .then((result) => result.json())
-    .then((response) => console.log(response));
-
-  console.log(`at the end of getJobStatus jobId `);
+    return jobId;
+  } catch (error) {
+    console.error(`submitJob error ${error}`);
+    return null;
+  }
 };
 
 export default {
   submitJob: submitJob,
-  getJobStatus: getJobStatus,
 };

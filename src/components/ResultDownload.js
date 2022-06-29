@@ -12,7 +12,14 @@ function ResultDownload() {
   const downloadKML = (event) => {
     console.log(`at the start of downloadKML job id ${jobId}`);
     event.preventDefault();
-    ResultService.downloadKML(jobId, token);
+
+    const download = async () => {
+      await ResultService.downloadKML(jobId, token);
+    };
+    download().catch((error) => {
+      console.error("downloadKML download Error:", error);
+    });
+
     console.log(`at the end of downloadKML job id ${jobId}`);
   };
 
@@ -20,8 +27,8 @@ function ResultDownload() {
     <div>
       <div className="container fluid">
         <div className="row">
-          <div className="col pt-4 offset-md-10 offset-lg-10 pb-2">
-            <button className="btn btn-primary" onClick={downloadKML}>
+          <div className="col-lg-2 col-md-3 col-sm-6 col-xs-8  pt-4 offset-lg-10 offset-md-9 offset-sm-6 offset-xs-4  pb-2">
+            <button className="btn btn-outline-secondary" onClick={downloadKML}>
               Download KML
             </button>
           </div>

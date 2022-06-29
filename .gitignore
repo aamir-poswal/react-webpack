@@ -1,8 +1,10 @@
 node_modules
 dist
 .env
+package-lock.json
+package-lock.json
 *.lock
-src/environments/testEnvironmentConfig.js
+package-lock.json
 package-lock.json
 dist/**
 dist/*.*
