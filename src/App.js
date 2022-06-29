@@ -5,9 +5,8 @@ import UserService from "./services/UserService";
 import Job from "./components/Job";
 import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
-import "./Styles/App.scss";
 
-const App = () => {
+export function App() {
   const [token, setToken] = useState("");
   const [jobId, setJobId] = useState(null);
   const setCurrentJobId = (currentJobId) => {
@@ -15,24 +14,36 @@ const App = () => {
     console.log("setCurrentJobId: " + currentJobId);
   };
   useEffect(() => {
-    UserService.loginToFMEServer().then((token) => {
+    const login = async () => {
+      var token = await UserService.loginToFMEServer();
       setToken(token);
+    };
+    login().catch((error) => {
+      console.error("login Error:", error);
     });
   }, []);
+
   return (
-    <div>
-      <UserContext.Provider value={token}>
-        <div className="container fluid">
-          <div>{!jobId && <Job setCurrentJobId={setCurrentJobId}></Job>}</div>
-          <JobContext.Provider value={jobId}>
-            <div>
-              {jobId && <ResultDownload></ResultDownload>}
-              {jobId && <Report></Report>}
-            </div>
-          </JobContext.Provider>
-        </div>
-      </UserContext.Provider>
-    </div>
+    <React.StrictMode>
+      <div>
+        {token && (
+          <div>
+            <UserContext.Provider value={token}>
+              <div className="container fluid">
+                <div>
+                  {!jobId && <Job setCurrentJobId={setCurrentJobId}></Job>}
+                </div>
+                <JobContext.Provider value={jobId}>
+                  <div>
+                    {jobId && <ResultDownload></ResultDownload>}
+                    {jobId && <Report></Report>}
+                  </div>
+                </JobContext.Provider>
+              </div>
+            </UserContext.Provider>
+          </div>
+        )}
+      </div>
+    </React.StrictMode>
   );
-};
-export default App;
+}
