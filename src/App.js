@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Report from "./components/Report";
 import UserContext from "./UserContext";
-import userService from "./services/userService";
+import userService from "./services/UserService";
 import Job from "./components/Job";
 import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
