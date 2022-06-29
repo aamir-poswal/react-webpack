@@ -13,6 +13,7 @@ const Report = () => {
     const displayHTMLReport = async () => {
       var myBlob = await ResultService.downloadHTMLReport(jobId, token);
       if (!myBlob) {
+        console.error("displayHTMLReport no file contents from server");
         return;
       }
       let myReader = new FileReader();
