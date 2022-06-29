@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Report from "./components/Report";
 import UserContext from "./UserContext";
-import userService from "./services/userService";
+import UserService from "./services/UserService";
 import Job from "./components/Job";
 import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
@@ -15,7 +15,7 @@ const App = () => {
     console.log("setCurrentJobId: " + currentJobId);
   };
   useEffect(() => {
-    userService.loginToFMEServer().then((token) => {
+    UserService.loginToFMEServer().then((token) => {
       setToken(token);
     });
   }, []);
