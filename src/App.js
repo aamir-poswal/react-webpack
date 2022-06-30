@@ -5,8 +5,9 @@ import UserService from "./services/UserService";
 import Job from "./components/Job";
 import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
+import "./Styles/App.scss";
 
-export function App() {
+const App = () => {
   const [token, setToken] = useState("");
   const [jobId, setJobId] = useState(null);
   const setCurrentJobId = (currentJobId) => {
@@ -46,4 +47,5 @@ export function App() {
       </div>
     </React.StrictMode>
   );
-}
+};
+export default App;
