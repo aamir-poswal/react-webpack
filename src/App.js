@@ -35,7 +35,11 @@ export function App() {
                 </div>
                 <JobContext.Provider value={jobId}>
                   <div>
-                    {jobId && <ResultDownload></ResultDownload>}
+                    {jobId && (
+                      <div className="row">
+                        <ResultDownload></ResultDownload>
+                      </div>
+                    )}
                     {jobId && <Report></Report>}
                   </div>
                 </JobContext.Provider>

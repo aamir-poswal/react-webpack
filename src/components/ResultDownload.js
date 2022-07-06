@@ -24,12 +24,10 @@ function ResultDownload() {
   };
 
   return (
-    <div className="row">
-      <div className="col-lg-3 col-md-4 col-sm-6 col-xs-8  pt-4 offset-lg-9 offset-md-8 offset-sm-6 offset-xs-4  pb-2">
-        <button className="btn btn-outline-secondary" onClick={downloadKML}>
-          Download KML
-        </button>
-      </div>
+    <div className="col-lg-3 col-md-4 col-sm-6 col-xs-8  pt-4 offset-lg-9 offset-md-8 offset-sm-6 offset-xs-4  pb-2">
+      <button className="btn btn-outline-secondary" onClick={downloadKML}>
+        Download KML
+      </button>
     </div>
   );
 }
