@@ -26,12 +26,16 @@ function Job({
     console.log("at the end of runJob");
   };
   const setExportToHTMLOption = (event) => {
-    console.log("setExportToHTMLOption", event.target.value);
+    if (!exportToKMLInput && exportToHTMLInput) {
+      return;
+    }
     setExportToHTMLInput((exportToHTMLInput) => !exportToHTMLInput);
     setExportToHTMLUserInput(!exportToHTMLInput);
   };
   const setExportToKMLOption = (event) => {
-    console.log("setExportToKMLOption", event.target.value);
+    if (!exportToHTMLInput && exportToKMLInput) {
+      return;
+    }
     setExportToKMLInput((exportToKMLInput) => !exportToKMLInput);
     setExportToKMLUserInput(!exportToKMLInput);
   };
