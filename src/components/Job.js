@@ -7,15 +7,15 @@ function Job({
   setExportToKMLUserInput,
 }) {
   const token = useContext(UserContext);
-  const [exportToHTML, setExportToHTML] = useState(true);
-  const [exportToKML, setExportToKML] = useState(true);
+  const [exportToHTMLInput, setExportToHTMLInput] = useState(true);
+  const [exportToKMLInput, setExportToKMLInput] = useState(true);
 
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
 
     // const runJob = async () => {
-    //   var jobId = await JobService.submitJob(exportToHTML, exportToKML, token);
+    //   var jobId = await JobService.submitJob(exportToHTMLInput, exportToKMLInput, token);
     //   setCurrentJobId(jobId);
     // };
     // runJob().catch((error) => {
@@ -26,14 +26,14 @@ function Job({
     console.log("at the end of runJob");
   };
   const setExportToHTMLOption = (event) => {
-    event.preventDefault();
-    setExportToHTML(!exportToHTML);
-    setExportToHTMLUserInput(exportToHTML);
+    console.log("setExportToHTMLOption", event.target.value);
+    setExportToHTMLInput((exportToHTMLInput) => !exportToHTMLInput);
+    setExportToHTMLUserInput(!exportToHTMLInput);
   };
   const setExportToKMLOption = (event) => {
-    event.preventDefault();
-    setExportToKML(!exportToKML);
-    setExportToKMLUserInput(exportToKML);
+    console.log("setExportToKMLOption", event.target.value);
+    setExportToKMLInput((exportToKMLInput) => !exportToKMLInput);
+    setExportToKMLUserInput(!exportToKMLInput);
   };
   return (
     <div className="row">
@@ -43,7 +43,7 @@ function Job({
             type="checkbox"
             className="form-check-input"
             id="checkboxExportToHTML"
-            checked={exportToHTML}
+            checked={exportToHTMLInput}
             onChange={setExportToHTMLOption}
           />
           <label className="form-check-label" htmlFor="checkboxExportToHTML">
@@ -55,7 +55,7 @@ function Job({
             type="checkbox"
             className="form-check-input"
             id="checkboxExportToKML"
-            checked={exportToKML}
+            checked={exportToKMLInput}
             onChange={setExportToKMLOption}
           />
           <label className="form-check-label" htmlFor="checkboxExportToKML">
