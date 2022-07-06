@@ -32,13 +32,9 @@ const Report = () => {
   };
 
   return (
-    <div>
-      <div className="container fluid">
-        <div className="row">
-          <div className="col-11">
-            <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
-          </div>
-        </div>
+    <div className="row">
+      <div className="col-11">
+        <div dangerouslySetInnerHTML={renderReportHTMLMarkup()}></div>
       </div>
     </div>
   );
