@@ -1,10 +1,15 @@
 import React, { useState, useContext } from "react";
 import JobService from "../services/JobService";
 import UserContext from "../UserContext";
-function Job({ setCurrentJobId }) {
+function Job({
+  setCurrentJobId,
+  setExportToHTMLUserInput,
+  setExportToKMLUserInput,
+}) {
+  const token = useContext(UserContext);
   const [exportToHTML, setExportToHTML] = useState(true);
   const [exportToKML, setExportToKML] = useState(true);
-  const token = useContext(UserContext);
+
   const runJob = (event) => {
     event.preventDefault();
     console.log("at the start of runJob");
@@ -20,6 +25,16 @@ function Job({ setCurrentJobId }) {
     setCurrentJobId(2278);
     console.log("at the end of runJob");
   };
+  const setExportToHTMLOption = (event) => {
+    event.preventDefault();
+    setExportToHTML(!exportToHTML);
+    setExportToHTMLUserInput(exportToHTML);
+  };
+  const setExportToKMLOption = (event) => {
+    event.preventDefault();
+    setExportToKML(!exportToKML);
+    setExportToKMLUserInput(exportToKML);
+  };
   return (
     <div className="row">
       <div className="col">
@@ -29,7 +44,7 @@ function Job({ setCurrentJobId }) {
             className="form-check-input"
             id="checkboxExportToHTML"
             checked={exportToHTML}
-            onChange={() => setExportToHTML(!exportToHTML)}
+            onChange={setExportToHTMLOption}
           />
           <label className="form-check-label" htmlFor="checkboxExportToHTML">
             Export To HTML
@@ -41,7 +56,7 @@ function Job({ setCurrentJobId }) {
             className="form-check-input"
             id="checkboxExportToKML"
             checked={exportToKML}
-            onChange={() => setExportToKML(!exportToKML)}
+            onChange={setExportToKMLOption}
           />
           <label className="form-check-label" htmlFor="checkboxExportToKML">
             Export To KML

@@ -9,10 +9,21 @@ import JobContext from "./JobContext";
 
 export function App() {
   const [token, setToken] = useState("");
-  const [jobId, setJobId] = useState(null);
+  const [jobId, setJobId] = useState("");
+  const [exportToHTML, setExportToHTML] = useState(true);
+  const [exportToKML, setExportToKML] = useState(true);
+
   const setCurrentJobId = (currentJobId) => {
     setJobId(currentJobId);
     console.log("setCurrentJobId: " + currentJobId);
+  };
+  const setExportToHTMLUserInput = (currentExportToHTMLUserInput) => {
+    setExportToHTML(currentExportToHTMLUserInput);
+    console.log("setExportToHTMLUserInput: " + currentExportToHTMLUserInput);
+  };
+  const setExportToKMLUserInput = (currentExportToKMLUserInput) => {
+    setExportToKML(currentExportToKMLUserInput);
+    console.log("setExportToKMLUserInput: " + currentExportToKMLUserInput);
   };
   useEffect(() => {
     const login = async () => {
@@ -32,7 +43,13 @@ export function App() {
             <UserContext.Provider value={token}>
               <div className="container fluid">
                 <div>
-                  {!jobId && <Job setCurrentJobId={setCurrentJobId}></Job>}
+                  {!jobId && (
+                    <Job
+                      setCurrentJobId={setCurrentJobId}
+                      setExportToHTMLUserInput={setExportToHTMLUserInput}
+                      setExportToKMLUserInput={setExportToKMLUserInput}
+                    ></Job>
+                  )}
                 </div>
                 <JobContext.Provider value={jobId}>
                   <div>
@@ -42,11 +59,11 @@ export function App() {
                           <Rerun setCurrentJobId={setCurrentJobId}></Rerun>
                         </div>
                         <div className="pt-4 pb-2 col-lg-3 col-md-4 col-sm-6 col-xs-7 offset-lg-6 offset-md-4 offset-sm-1 offset-xs-1">
-                          <ResultDownload></ResultDownload>
+                          {exportToKML && <ResultDownload></ResultDownload>}
                         </div>
                       </div>
                     )}
-                    {jobId && <Report></Report>}
+                    {jobId && exportToHTML && <Report></Report>}
                   </div>
                 </JobContext.Provider>
               </div>
