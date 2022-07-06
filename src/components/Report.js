@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import UserContext from "../UserContext";
 import JobContext from "../JobContext";
 import ResultService from "../services/ResultService";
@@ -11,7 +11,7 @@ const Report = () => {
   useEffect(() => {
     console.log(`job id in report component ${jobId}`);
     const displayHTMLReport = async () => {
-      var myBlob = await ResultService.downloadHTMLReport(jobId, token);
+      const myBlob = await ResultService.downloadHTMLReport(jobId, token);
       if (!myBlob) {
         console.error("displayHTMLReport no file contents from server");
         return;

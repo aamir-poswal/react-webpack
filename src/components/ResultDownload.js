@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import UserContext from "../UserContext";
 import JobContext from "../JobContext";
 import ResultService from "../services/ResultService";

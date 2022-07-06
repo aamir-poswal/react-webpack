@@ -22,9 +22,9 @@ const downloadHTMLReport = async (jobId, token) => {
       console.log("downloadHTMLReport unexpected response from server");
       return null;
     }
-    const myBlob = await response.blob();
+    const responseBlob = await response.blob();
     console.log(`at the end of downloadHTMLReport jobId ${jobId}`);
-    return myBlob;
+    return responseBlob;
   } catch (error) {
     console.error(`downloadHTMLReport error ${error}`);
     return null;
@@ -51,9 +51,9 @@ const downloadKML = async (jobId, token) => {
       console.log("downloadKML unexpected response from server");
       return null;
     }
-    let blob = await response.blob();
-    let url = window.URL.createObjectURL(blob);
-    let a = document.createElement("a");
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
     a.href = url;
     a.download = "FireFlowReport.kml";
     document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
