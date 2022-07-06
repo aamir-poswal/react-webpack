@@ -5,6 +5,7 @@ function Job({
   setCurrentJobId,
   setExportToHTMLUserInput,
   setExportToKMLUserInput,
+  setSpecificError,
 }) {
   const token = useContext(UserContext);
   const [exportToHTMLInput, setExportToHTMLInput] = useState(true);
@@ -15,11 +16,17 @@ function Job({
     console.log("at the start of runJob");
 
     // const runJob = async () => {
-    //   var jobId = await JobService.submitJob(exportToHTMLInput, exportToKMLInput, token);
+    //   const jobId = await JobService.submitJob(
+    //     exportToHTMLInput,
+    //     exportToKMLInput,
+    //     token
+    //   );
     //   setCurrentJobId(jobId);
+    //   setSpecificError("");
     // };
     // runJob().catch((error) => {
     //   console.error("runJob Error:", error);
+    //   setSpecificError(error);
     // });
 
     setCurrentJobId(2278);

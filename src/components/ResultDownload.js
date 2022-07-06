@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import UserContext from "../UserContext";
 import JobContext from "../JobContext";
 import ResultService from "../services/ResultService";
-function ResultDownload() {
+function ResultDownload(setSpecificError) {
   const token = useContext(UserContext);
   const jobId = useContext(JobContext);
   useEffect(() => {
@@ -15,9 +15,11 @@ function ResultDownload() {
 
     const download = async () => {
       await ResultService.downloadKML(jobId, token);
+      setSpecificError("");
     };
     download().catch((error) => {
       console.error("downloadKML download Error:", error);
+      setSpecificError(error);
     });
 
     console.log(`at the end of downloadKML job id ${jobId}`);

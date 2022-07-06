@@ -3,7 +3,7 @@ import UserContext from "../UserContext";
 import JobContext from "../JobContext";
 import ResultService from "../services/ResultService";
 
-const Report = () => {
+const Report = (setSpecificError) => {
   const [htmlContent, setHTMLContent] = useState("");
   const token = useContext(UserContext);
   const jobId = useContext(JobContext);
@@ -21,9 +21,11 @@ const Report = () => {
         setHTMLContent(e.target.result);
       });
       myReader.readAsText(myBlob);
+      setSpecificError("");
     };
     displayHTMLReport().catch((error) => {
       console.error("displayHTMLReport Error:", error);
+      setSpecificError(error);
     });
   }, []);
 

@@ -15,8 +15,12 @@ export function App() {
   const [exportToKML, setExportToKML] = useState(true);
 
   const setCurrentJobId = (currentJobId) => {
-    setJobId(currentJobId);
     console.log("setCurrentJobId: " + currentJobId);
+    setJobId(currentJobId);
+  };
+  const setSpecificError = (specificError) => {
+    console.log("setSpecificError: " + specificError);
+    setError(specificError);
   };
   const setExportToHTMLUserInput = (currentExportToHTMLUserInput) => {
     setExportToHTML(currentExportToHTMLUserInput);
@@ -30,6 +34,7 @@ export function App() {
     const login = async () => {
       var token = await UserService.loginToFMEServer();
       setToken(token);
+      setError("");
     };
     login().catch((error) => {
       console.error("login Error:", error);
@@ -45,7 +50,7 @@ export function App() {
         {error && (
           <div className="row">
             <div className="col pt-2">
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 {error}
               </div>
             </div>
@@ -62,6 +67,7 @@ export function App() {
                         setCurrentJobId={setCurrentJobId}
                         setExportToHTMLUserInput={setExportToHTMLUserInput}
                         setExportToKMLUserInput={setExportToKMLUserInput}
+                        setSpecificError={setSpecificError}
                       ></Job>
                     )}
                   </div>
@@ -79,11 +85,17 @@ export function App() {
                             ></Rerun>
                           </div>
                           <div className="pt-4 pb-2 col-lg-3 col-md-4 col-sm-6 col-xs-7 offset-lg-6 offset-md-4 offset-sm-1 offset-xs-1">
-                            {exportToKML && <ResultDownload></ResultDownload>}
+                            {exportToKML && (
+                              <ResultDownload
+                                setSpecificError={setSpecificError}
+                              ></ResultDownload>
+                            )}
                           </div>
                         </div>
                       )}
-                      {jobId && exportToHTML && <Report></Report>}
+                      {jobId && exportToHTML && (
+                        <Report setSpecificError={setSpecificError}></Report>
+                      )}
                     </div>
                   </JobContext.Provider>
                 </div>
