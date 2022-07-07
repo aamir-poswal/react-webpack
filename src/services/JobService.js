@@ -19,10 +19,12 @@ const submitJob = async (exportToHTML, exportToKML, token) => {
       }
     );
     const status = await response.status;
-    console.log(`submitJob response status ${status} ${status === 200}`);
-    if (status !== 200) {
+    console.log(
+      `submitJob response status ${status} ${status < 200 || status >= 300}`
+    );
+    if (status < 200 || status >= 300) {
       console.log("submitJob unexpected response from server");
-      return null;
+      return Promise.reject(`submitJob error status code ${status}`);
     }
     let jobId = await response.json();
     console.log(`at the end of submitJob jobId ${jobId}`);
@@ -30,7 +32,7 @@ const submitJob = async (exportToHTML, exportToKML, token) => {
     return jobId;
   } catch (error) {
     console.error(`submitJob error ${error}`);
-    return null;
+    return Promise.reject(error);
   }
 };
 

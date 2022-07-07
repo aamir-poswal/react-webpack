@@ -1,8 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import UserContext from "../UserContext";
 import JobContext from "../JobContext";
 import ResultService from "../services/ResultService";
-function ResultDownload() {
+function ResultDownload(setSpecificError) {
   const token = useContext(UserContext);
   const jobId = useContext(JobContext);
   useEffect(() => {
@@ -15,26 +15,22 @@ function ResultDownload() {
 
     const download = async () => {
       await ResultService.downloadKML(jobId, token);
+      setSpecificError("");
     };
     download().catch((error) => {
       console.error("downloadKML download Error:", error);
+      setSpecificError(
+        "Something went wrong while downloading KML file. Please try again later."
+      );
     });
 
     console.log(`at the end of downloadKML job id ${jobId}`);
   };
 
   return (
-    <div>
-      <div className="container fluid">
-        <div className="row">
-          <div className="col-lg-3 col-md-4 col-sm-6 col-xs-8  pt-4 offset-lg-9 offset-md-8 offset-sm-6 offset-xs-4  pb-2">
-            <button className="btn btn-outline-secondary" onClick={downloadKML}>
-              Download KML
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <button className="btn btn-outline-secondary" onClick={downloadKML}>
+      Download KML
+    </button>
   );
 }
 

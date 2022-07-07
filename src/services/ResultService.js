@@ -16,18 +16,20 @@ const downloadHTMLReport = async (jobId, token) => {
     );
     const status = await response.status;
     console.log(
-      `downloadHTMLReport response status ${status} ${status === 200}`
+      `downloadHTMLReport response status ${status} ${
+        status < 200 || status >= 300
+      }`
     );
-    if (status !== 200) {
+    if (status < 200 || status >= 300) {
       console.log("downloadHTMLReport unexpected response from server");
-      return null;
+      return Promise.reject(`downloadHTMLReport error status code ${status}`);
     }
-    const myBlob = await response.blob();
+    const responseBlob = await response.blob();
     console.log(`at the end of downloadHTMLReport jobId ${jobId}`);
-    return myBlob;
+    return responseBlob;
   } catch (error) {
     console.error(`downloadHTMLReport error ${error}`);
-    return null;
+    return Promise.reject(error);
   }
 };
 
@@ -46,14 +48,16 @@ const downloadKML = async (jobId, token) => {
       }
     );
     const status = await response.status;
-    console.log(`downloadKML response status ${status} ${status === 200}`);
-    if (status !== 200) {
+    console.log(
+      `downloadKML response status ${status} ${status < 200 || status >= 300}`
+    );
+    if (status < 200 || status >= 300) {
       console.log("downloadKML unexpected response from server");
-      return null;
+      return Promise.reject(`downloadKML error status code ${status}`);
     }
-    let blob = await response.blob();
-    let url = window.URL.createObjectURL(blob);
-    let a = document.createElement("a");
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
     a.href = url;
     a.download = "FireFlowReport.kml";
     document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
@@ -63,7 +67,7 @@ const downloadKML = async (jobId, token) => {
     console.log(`at the end of downloadKML jobId ${jobId}`);
   } catch (error) {
     console.error(`downloadKML error ${error}`);
-    return null;
+    return Promise.reject(error);
   }
 };
 
