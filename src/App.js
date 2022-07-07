@@ -9,6 +9,7 @@ import JobContext from "./JobContext";
 import "./Styles/App.scss";
 
 const App = () => {
+  const [error, setError] = useState("");
   const [token, setToken] = useState("");
   const [jobId, setJobId] = useState("");
   const [exportToHTML, setExportToHTML] = useState(true);
