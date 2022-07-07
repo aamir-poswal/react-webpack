@@ -19,7 +19,9 @@ function ResultDownload(setSpecificError) {
     };
     download().catch((error) => {
       console.error("downloadKML download Error:", error);
-      setSpecificError(error);
+      setSpecificError(
+        "Something went wrong while downloading KML file. Please try again later."
+      );
     });
 
     console.log(`at the end of downloadKML job id ${jobId}`);

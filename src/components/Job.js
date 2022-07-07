@@ -26,7 +26,9 @@ function Job({
     // };
     // runJob().catch((error) => {
     //   console.error("runJob Error:", error);
-    //   setSpecificError(error);
+    //   setSpecificError(
+    //     "Something went wrong while submitting the job. Please try again later."
+    //   );
     // });
 
     setCurrentJobId(2278);

@@ -14,7 +14,7 @@ const Report = ({ setSpecificError }) => {
       const myBlob = await ResultService.downloadHTMLReport(jobId, token);
       if (!myBlob) {
         console.error("displayHTMLReport no file contents from server");
-        return;
+        throw new Error("displayHTMLReport no file contents from server");
       }
       let myReader = new FileReader();
       myReader.addEventListener("loadend", function (e) {
@@ -25,7 +25,9 @@ const Report = ({ setSpecificError }) => {
     };
     displayHTMLReport().catch((error) => {
       console.error("displayHTMLReport Error:", error);
-      setSpecificError(error);
+      setSpecificError(
+        "Something went wrong while downloading report. Please try again later."
+      );
     });
   }, []);
 
