@@ -3,7 +3,7 @@ import UserContext from "../UserContext";
 import JobContext from "../JobContext";
 import ResultService from "../services/ResultService";
 
-const Report = (setSpecificError) => {
+const Report = ({ setSpecificError }) => {
   const [htmlContent, setHTMLContent] = useState("");
   const token = useContext(UserContext);
   const jobId = useContext(JobContext);
