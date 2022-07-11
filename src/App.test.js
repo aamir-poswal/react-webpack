@@ -1,12 +1,6 @@
 import "whatwg-fetch";
 import React from "react";
-import {
-  render,
-  screen,
-  waitFor,
-  findByText,
-  getByText,
-} from "@testing-library/react";
+import { render, screen, act, waitFor } from "@testing-library/react";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import "@testing-library/jest-dom/extend-expect";
@@ -23,14 +17,13 @@ const server = setupServer(
 );
 
 beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
+afterEach(() => server.resetHandlers());
 
 describe("App", () => {
   test("renders App component", async () => {
-    await UserService.loginToFMEServer();
-    render(<App />);
-
+    await act(async () => render(<App />));
+    expect(await screen.findByText("Submit")).toBeInTheDocument();
     screen.debug();
   });
 });
