@@ -7,7 +7,7 @@ import Rerun from "./components/Rerun";
 import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
 
-export function App() {
+const App = () => {
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
   const [jobId, setJobId] = useState("");
@@ -106,4 +106,5 @@ export function App() {
       </div>
     </React.StrictMode>
   );
-}
+};
+export default App;
