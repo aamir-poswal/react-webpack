@@ -27,38 +27,36 @@ afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
 describe("App", () => {
-  //   test("renders App component", async () => {
-  //     await act(async () => render(<App />));
-  //     expect(await screen.findByText("Submit")).toBeInTheDocument();
-  //   });
-  //   test("renders app component with authentication error", async () => {
-  //     server.use(
-  //       rest.post(
-  //         "https://volue-geminitest.fmecloud.com/fmetoken/service/generate",
-  //         (req, res, ctx) => {
-  //           return res(ctx.status(401), ctx.text(""));
-  //         }
-  //       )
-  //     );
-  //     await act(async () => render(<App />));
-  //     expect(
-  //       await screen.findByText(
-  //         "Something went wrong while authenticating the request. Please try again later."
-  //       )
-  //     ).toBeInTheDocument();
-  //     screen.debug();
-  //   });
+  test("renders App component", async () => {
+    await act(async () => render(<App />));
+    expect(await screen.findByText("Submit")).toBeInTheDocument();
+  });
+  test("renders app component with authentication error", async () => {
+    server.use(
+      rest.post(
+        "https://volue-geminitest.fmecloud.com/fmetoken/service/generate",
+        (req, res, ctx) => {
+          return res(ctx.status(401), ctx.text(""));
+        }
+      )
+    );
+    await act(async () => render(<App />));
+    expect(
+      await screen.findByText(
+        "Something went wrong while authenticating the request. Please try again later."
+      )
+    ).toBeInTheDocument();
+  });
   test("renders html report", async () => {
-    var blob = new Blob();
+    var htmlContent = "<html><body><p>Report HTML Result</p></body></html>";
+    var blob = new Blob([htmlContent], {
+      type: "text/htm",
+    });
     server.use(
       rest.get(
         "https://volue-geminitest.fmecloud.com/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.html",
         (req, res, ctx) => {
-          return res(
-            ctx.status(200),
-            // ctx.body("<html><body><p>Report HTML Result</p></body></html>")
-            ctx.body(blob)
-          );
+          return res(ctx.status(200), ctx.body(blob));
         }
       )
     );
@@ -66,7 +64,7 @@ describe("App", () => {
     const button = await screen.findByText("Submit");
     //screen.debug(button);
     fireEvent.click(button);
-    screen.debug();
-    //expect(await screen.findByText("Report HTML Result")).toBeInTheDocument();
+    expect(await screen.findByText("Report HTML Result")).toBeInTheDocument();
+    //screen.debug();
   });
 });
