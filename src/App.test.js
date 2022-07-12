@@ -1,6 +1,6 @@
 import "whatwg-fetch";
 import React from "react";
-import { render, screen, act, waitFor } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import "@testing-library/jest-dom/extend-expect";
@@ -13,6 +13,12 @@ const server = setupServer(
     (req, res, ctx) => {
       return res(ctx.status(200), ctx.text("1254"));
     }
+  ),
+  rest.post(
+    "https://volue-geminitest.fmecloud.com/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw",
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json("221"));
+    }
   )
 );
 
@@ -21,25 +27,46 @@ afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
 describe("App", () => {
-  test("renders App component", async () => {
-    await act(async () => render(<App />));
-    expect(await screen.findByText("Submit")).toBeInTheDocument();
-  });
-  test("renders app component with authentication error", async () => {
+  //   test("renders App component", async () => {
+  //     await act(async () => render(<App />));
+  //     expect(await screen.findByText("Submit")).toBeInTheDocument();
+  //   });
+  //   test("renders app component with authentication error", async () => {
+  //     server.use(
+  //       rest.post(
+  //         "https://volue-geminitest.fmecloud.com/fmetoken/service/generate",
+  //         (req, res, ctx) => {
+  //           return res(ctx.status(401), ctx.text(""));
+  //         }
+  //       )
+  //     );
+  //     await act(async () => render(<App />));
+  //     expect(
+  //       await screen.findByText(
+  //         "Something went wrong while authenticating the request. Please try again later."
+  //       )
+  //     ).toBeInTheDocument();
+  //     screen.debug();
+  //   });
+  test("renders html report", async () => {
+    var blob = new Blob();
     server.use(
-      rest.post(
-        "https://volue-geminitest.fmecloud.com/fmetoken/service/generate",
+      rest.get(
+        "https://volue-geminitest.fmecloud.com/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.html",
         (req, res, ctx) => {
-          return res(ctx.status(401), ctx.text(""));
+          return res(
+            ctx.status(200),
+            // ctx.body("<html><body><p>Report HTML Result</p></body></html>")
+            ctx.body(blob)
+          );
         }
       )
     );
     await act(async () => render(<App />));
-    expect(
-      await screen.findByText(
-        "Something went wrong while authenticating the request. Please try again later."
-      )
-    ).toBeInTheDocument();
+    const button = await screen.findByText("Submit");
+    //screen.debug(button);
+    fireEvent.click(button);
     screen.debug();
+    //expect(await screen.findByText("Report HTML Result")).toBeInTheDocument();
   });
 });
