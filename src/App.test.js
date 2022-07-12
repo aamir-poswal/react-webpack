@@ -5,7 +5,6 @@ import { setupServer } from "msw/node";
 import { rest } from "msw";
 import "@testing-library/jest-dom/extend-expect";
 import App from "./App";
-import UserService from "./services/UserService";
 
 const server = setupServer(
   rest.post(
