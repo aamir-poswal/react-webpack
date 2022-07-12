@@ -24,6 +24,22 @@ describe("App", () => {
   test("renders App component", async () => {
     await act(async () => render(<App />));
     expect(await screen.findByText("Submit")).toBeInTheDocument();
+  });
+  test("renders app component with authentication error", async () => {
+    server.use(
+      rest.post(
+        "https://volue-geminitest.fmecloud.com/fmetoken/service/generate",
+        (req, res, ctx) => {
+          return res(ctx.status(401), ctx.text(""));
+        }
+      )
+    );
+    await act(async () => render(<App />));
+    expect(
+      await screen.findByText(
+        "Something went wrong while authenticating the request. Please try again later."
+      )
+    ).toBeInTheDocument();
     screen.debug();
   });
 });
