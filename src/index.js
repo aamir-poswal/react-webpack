@@ -6,5 +6,5 @@ import "./Styles/App.scss";
 
 const container = document.getElementById("app");
 const root = createRoot(container);
-
-root.render(<App id="app" />);
+var config = { CustomerNumber: "0999" };
+root.render(<App id="app" config={config} />);
