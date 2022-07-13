@@ -9,3 +9,5 @@ package-lock.json
 dist/**
 dist/*.*
 *.env
+package-lock.json
+package-lock.json
