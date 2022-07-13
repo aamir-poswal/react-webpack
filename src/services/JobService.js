@@ -1,13 +1,17 @@
 import config from "../environments/TestEnvironmentConfig";
 
 const submitJob = async (exportToHTML, exportToKML, token) => {
-  const data = { GenerateHTMLreport: exportToHTML, ExportToKML: exportToKML };
+  const data = {
+    GenerateHTMLreport: exportToHTML,
+    ExportToKML: exportToKML,
+    CustomerNumber: "0999",
+  };
   console.log(
     `at the start of submitJob exportToHTML ${exportToHTML} exportToKML ${exportToKML} token ${token}`
   );
   try {
     const response = await fetch(
-      `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw`,
+      `${config.fmeCloudServerBaseURL}/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_v2.fmw`,
       {
         headers: {
           "Content-Type": "application/json;charset=UTF-8",

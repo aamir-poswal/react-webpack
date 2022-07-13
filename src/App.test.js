@@ -14,7 +14,7 @@ const server = setupServer(
     }
   ),
   rest.post(
-    "https://volue-geminitest.fmecloud.com/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_DataDownload.fmw",
+    "https://volue-geminitest.fmecloud.com/fmerest/v3/transformations/transact/GeminiWaterAnalysis/GeminiWaterAnalysis_FireFlowReport_v2.fmw",
     (req, res, ctx) => {
       return res(ctx.status(200), ctx.json("221"));
     }
@@ -49,11 +49,11 @@ describe("App", () => {
   test("renders html report", async () => {
     var htmlContent = "<html><body><p>Report HTML Result</p></body></html>";
     var blob = new Blob([htmlContent], {
-      type: "text/htm",
+      type: "text/html",
     });
     server.use(
       rest.get(
-        "https://volue-geminitest.fmecloud.com/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.html",
+        "https://volue-geminitest.fmecloud.com/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/0999FireFlowReport.html",
         (req, res, ctx) => {
           return res(ctx.status(200), ctx.body(blob));
         }

@@ -1,10 +1,11 @@
 import config from "../environments/TestEnvironmentConfig";
 
 const downloadHTMLReport = async (jobId, token) => {
+  const customerNumber = "0999";
   console.log(`at the start of downloadHTMLReport jobId ${jobId}`);
   try {
     const response = await fetch(
-      `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.html`,
+      `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/${customerNumber}FireFlowReport.html`,
       {
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
@@ -35,9 +36,10 @@ const downloadHTMLReport = async (jobId, token) => {
 
 const downloadKML = async (jobId, token) => {
   console.log(`at the start of downloadKML jobId ${jobId}`);
+  const customerNumber = "0999";
   try {
     let response = await fetch(
-      `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/FireFlowReport.kml`,
+      `${config.fmeCloudServerBaseURL}/fmerest/v3/resources/connections/FME_SHAREDRESOURCE_DATA/filesys/GeminiWaterAnalysisOutput/${customerNumber}FireFlowReport.kml`,
       {
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
