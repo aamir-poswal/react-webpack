@@ -8,7 +8,7 @@ import ResultDownload from "./components/ResultDownload";
 import JobContext from "./JobContext";
 import "./Styles/App.scss";
 
-const App = () => {
+const App = ({ config }) => {
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
   const [jobId, setJobId] = useState("");
@@ -32,6 +32,7 @@ const App = () => {
     console.log("setExportToKMLUserInput: " + currentExportToKMLUserInput);
   };
   useEffect(() => {
+    console.log(`CustomerNumer = ${config.CustomerNumber}`);
     const login = async () => {
       var token = await UserService.loginToFMEServer();
       setToken(token);
